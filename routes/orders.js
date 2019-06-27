@@ -1,8 +1,8 @@
 const Order = require('../models/Order');
 const {
   requireAuth,
-//   requireAdmin,
-//   isAdmin,
+  //   requireAdmin,
+  //   isAdmin,
 } = require('../middleware/auth');
 
 module.exports = (app, next) => {
@@ -49,7 +49,7 @@ module.exports = (app, next) => {
     product.food = req.body.food
     product.price = req.body.price
     product.status = req.body.status
-   
+
     product.save((err, orderStored) => {
       if (err) res.status(500).send({
         message: `Error al salvar en la base de datos ${err}`

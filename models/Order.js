@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 const OrderSchema = new mongoose.Schema({
   food: {
-    type: String,
-    required: true,
-    trim: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Product',
   },
   price:{
-    type:Number,
-    required:true,
-    default: 0
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Product',
   },
   status: {
     type: String,
@@ -18,4 +17,7 @@ const OrderSchema = new mongoose.Schema({
   },
 });
 
+OrderSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Order', OrderSchema);
+
+

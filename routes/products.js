@@ -2,8 +2,8 @@
 const Product = require('../models/Product');
 const {
   requireAuth,
-//   requireAdmin,
-//   isAdmin,
+  //   requireAdmin,
+  //   isAdmin,
 } = require('../middleware/auth');
 
 module.exports = (app, next) => {
@@ -98,8 +98,6 @@ module.exports = (app, next) => {
       })
     })
   })
-
-
 
   return next();
 
