@@ -48,7 +48,19 @@ module.exports = (app, next) => {
         })
     });
 
-   
+    app.put('/products/:productId', requireAuth, (req,res)=>{
+        let productId = req.params.productId
+        let update = req.body
+
+        Product.findByIdAndUpdate(productId, update(err,productUpdated)=>{
+            if(err) res.status(500).send({message:`Error al salvar en la base de datos ${err}`})
+
+            res.status(200).send({product:productUpdated})
+        })
+    });
+
+
+    
 
     return next();
 
