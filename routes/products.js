@@ -52,7 +52,7 @@ module.exports = (app, next) => {
         let productId = req.params.productId
         let update = req.body
 
-        Product.findByIdAndUpdate(productId, update(err,productUpdated)=>{
+        Product.findByIdAndUpdate(productId, update, (err, productUpdated)=>{
             if(err) res.status(500).send({message:`Error al salvar en la base de datos ${err}`})
 
             res.status(200).send({product:productUpdated})
