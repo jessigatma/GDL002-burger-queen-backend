@@ -3,7 +3,9 @@ const User = require('../models/User');
 
 
 module.exports = (app, next) => {
-  const { secret } = app.get('config');
+  const {
+    secret
+  } = app.get('config');
 
   /*
    * Ruta de autenticación usando email y password
@@ -13,7 +15,10 @@ module.exports = (app, next) => {
    * seguros).
    */
   app.post('/auth', (req, resp, next) => {
-    const { email, password } = req.body;
+    const {
+      email,
+      password
+    } = req.body;
 
     if (!email || !password) {
       return next(400);
@@ -23,7 +28,11 @@ module.exports = (app, next) => {
       if (err) {
         return next(err);
       }
-      resp.json({ token: jwt.sign({ uid: user._id }, secret) });
+      resp.json({
+        token: jwt.sign({
+          uid: user._id
+        }, secret)
+      });
     });
   });
 

@@ -39,7 +39,9 @@ UserSchema.pre('save', function (next) {
 
 
 UserSchema.statics.authenticate = function (email, password, cb) {
-  this.findOne({ email }, (err, user) => {
+  this.findOne({
+    email
+  }, (err, user) => {
     if (err) {
       return cb(500);
     }
@@ -60,7 +62,9 @@ UserSchema.statics.authenticate = function (email, password, cb) {
 
 UserSchema.statics.findByIdOrEmail = function (emailOrId, cb) {
   if (emailOrId.split('@').length === 2) {
-    return this.findOne({ email: emailOrId }, cb);
+    return this.findOne({
+      email: emailOrId
+    }, cb);
   }
   return this.findById(emailOrId, cb);
 };

@@ -9,12 +9,18 @@ const bodyParser = require('body-parser')
 // const Product = require('./models/Product')
 
 
-const { port, mongoUrl, secret } = config;
+const {
+  port,
+  mongoUrl,
+  secret
+} = config;
 const app = express();
 
 
 // Conectar aplicación a MongoDB
-mongoose.connect(mongoUrl, { useNewUrlParser: true });
+mongoose.connect(mongoUrl, {
+  useNewUrlParser: true
+});
 
 
 app.set('config', config);
@@ -25,7 +31,9 @@ app.use(express.json());
 app.use(authMiddleware(secret));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 routes(app, (err) => {
   if (err) {
@@ -58,18 +66,18 @@ routes(app, (err) => {
 //   product.name = req.body.name
 //   product.price = req.body.price
 //   product.menu =  req.body.menu
-  
+
 //   product.save((err,productStored) => {
 //     if(err) res.status(500).send({message:'Error al salvar la BD'})
-    
+
 //     res.status(200).send({product:productStored})
 //   })
 // })
 
 // app.put('/products/:productid', (req, res)=> {
-  
+
 // })
 
 // app.delete('/products/:productid', (req, res)=> {
-  
+
 // })
