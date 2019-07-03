@@ -1,6 +1,8 @@
 const auth = require('./auth');
 const users = require('./users');
 const products = require('./products');
+const productsbr = require('./productsbr');
+const productslu = require('./productslu')
 const orders = require('./orders');
 
 
@@ -32,7 +34,9 @@ const register = (app, routes, cb) => {
 module.exports = (app, next) => register(app, [
   auth,
   users,
-  products,
+  // products,
+  productsbr,
+  productslu,
   orders,
   root,
 ], next);

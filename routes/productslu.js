@@ -1,4 +1,4 @@
-const Product = require('../models/Product');
+const Product = require('../models/Productlu');
 const {
   requireAuth,
   //   requireAdmin,
@@ -7,7 +7,7 @@ const {
 
 module.exports = (app, next) =>{
 
-  app.get('/products',  (req, res) => {
+  app.get('/products/lunch',  (req, res) => {
 
     Product.find({}, (err, products) => {
       if (err) return res.status(500).send({
@@ -23,7 +23,7 @@ module.exports = (app, next) =>{
     });
   });
 
-  app.get('/products/:productId',  (req, res) => {
+  app.get('/products/lunch/:productId',  (req, res) => {
     const productId = req.params.productId;
 
     Product.findById(productId, (err, product) => {
@@ -40,7 +40,7 @@ module.exports = (app, next) =>{
     });
   });
 
-  app.post('/products',  (req, res) => {
+  app.post('/products/lunch',  (req, res) => {
     // console.log('POST /products');
     // console.log(req.body);
 
@@ -50,7 +50,7 @@ module.exports = (app, next) =>{
     product.food = req.body.food;
     product.price = req.body.price;
     product.status = req.body.status;
-    product.meals = req.body.meals;
+    product.objectID = req.body.objectID;
 
     product.save((err, productStored) => {
       if (err) res.status(500).send({
@@ -63,7 +63,7 @@ module.exports = (app, next) =>{
     });
   });
 
-  app.put('/products/:productId',  (req, res) => {
+  app.put('/products/lunch/:productId',  (req, res) => {
     const productId = req.params.productId;
     const update = req.body;
 
@@ -78,7 +78,7 @@ module.exports = (app, next) =>{
     });
   });
 
-  app.delete('/products/:productId',  (req, res) => {
+  app.delete('/products/lunch/:productId',  (req, res) => {
     const productId = req.params.productId;
 
     Product.findById(productId, (err, product) => {
