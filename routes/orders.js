@@ -7,7 +7,7 @@ const {
 
 module.exports = (app, next) => {
 
-  app.get('/orders', requireAuth, (req, res) => {
+  app.get('/orders', (req, res) => {
 
     Order.find({}, (err, orders) => {
       if (err) return res.status(500).send({
@@ -23,7 +23,7 @@ module.exports = (app, next) => {
     })
   });
 
-  app.get('/orders/:orderId', requireAuth, (req, res) => {
+  app.get('/orders/:orderId',  (req, res) => {
     let orderId = req.params.orderId
 
     Order.findById(orderId, (err, order) => {
@@ -40,17 +40,18 @@ module.exports = (app, next) => {
     })
   });
 
-  app.post('/orders', requireAuth, (req, res) => {
+  app.post('/orders', (req, res) => {
     console.log('POST /orders')
     console.log(req.body)
 
     let order = new Order()
 
-    product.food = req.body.food
-    product.price = req.body.price
-    product.status = req.body.status
+    order.products = req.body.products
+    order.table = req.body.table
+    // order.date = req.body.date
+    // order.status = req.body.status
 
-    product.save((err, orderStored) => {
+    order.save((err, orderStored) => {
       if (err) res.status(500).send({
         message: `Error al salvar en la base de datos ${err}`
       })
@@ -61,7 +62,7 @@ module.exports = (app, next) => {
     })
   });
 
-  app.put('/orders/:orderId', requireAuth, (req, res) => {
+  app.put('/orders/:orderId', (req, res) => {
     let orderId = req.params.orderId
     let update = req.body
 
@@ -76,7 +77,7 @@ module.exports = (app, next) => {
     })
   });
 
-  app.delete('/orders/:orderId', requireAuth, (req, res) => {
+  app.delete('/orders/:orderId', (req, res) => {
     let orderId = req.params.orderId
 
     Order.findById(orderId, (err, order) => {

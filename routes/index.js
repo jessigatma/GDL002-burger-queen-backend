@@ -1,6 +1,6 @@
 const auth = require('./auth');
 const users = require('./users');
-const products = require('./products');
+// const products = require('./products');
 const productsbr = require('./productsbr');
 const productslu = require('./productslu')
 const orders = require('./orders');

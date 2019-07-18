@@ -2,19 +2,21 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
 
 const OrderSchema = new mongoose.Schema({
-  food: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'Product',
+  products: {
+    type: Object,
   },
-  price:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'Product',
+  table: {
+    type: Number,
   },
-  status: {
-    type: String,
-    required: true,
-    data: ['send', 'canceled']
-  },
+  // date: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
+  // status: {
+  //   type: String,
+  //   required: true,
+  //   data: ['send', 'canceled']
+  // },
 });
 
 OrderSchema.plugin(mongoosePaginate);

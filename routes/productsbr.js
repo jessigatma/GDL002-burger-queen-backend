@@ -8,7 +8,7 @@ const {
 
 module.exports = (app, next) =>{
 
-  app.get('/products/breakfast',  (req, res) => {
+  app.get('/products/breakfast', (req, res) => {
 
     Product.find({}, (err, products) => {
       if (err) return res.status(500).send({
