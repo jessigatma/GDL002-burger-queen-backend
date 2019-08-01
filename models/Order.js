@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
 
 const OrderSchema = new mongoose.Schema({
-  products: {
+  cashOrder: {
     type: Object,
   },
   table: {
     type: Number,
   },
-  // date: {
-  //   type: Date,
-  //   default: Date.now,
-  // },
+  dated: {
+    type: Date,
+    default: Date.now,
+  },
   // status: {
   //   type: String,
   //   required: true,

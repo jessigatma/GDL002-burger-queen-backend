@@ -46,9 +46,9 @@ module.exports = (app, next) => {
 
     let order = new Order()
 
-    order.products = req.body.products
+    order.cashOrder = req.body.cashOrder
     order.table = req.body.table
-    // order.date = req.body.date
+    order.dated = req.body.dated
     // order.status = req.body.status
 
     order.save((err, orderStored) => {
