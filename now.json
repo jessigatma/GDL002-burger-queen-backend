@@ -19,5 +19,8 @@
       "methods": ["POST", "GET"],
       "dest": "/index.js"
     }
-  ]
+  ],
+  "env": {
+    "MONGO_URL": "mongodb+srv://jessgatma:jessicagm@cluster0-2stiw.mongodb.net/test?retryWrites=true&w=majority"
+  }
 }

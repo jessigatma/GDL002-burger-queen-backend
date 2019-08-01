@@ -1,19 +1,12 @@
 const User = require('../models/User');
-const {
-  requireAuth,
-  requireAdmin,
-  isAuthenticated,
-  isAdmin,
-} = require('../middleware/auth');
+const { requireAuth, requireAdmin, isAuthenticated, isAdmin } = require('../middleware/auth');
 const {
   createPrivatePropsFilter,
   getPaginationParamsFromRequest,
   buildLinkHeader,
 } = require('../lib/util');
 
-
 const omitPrivateProps = createPrivatePropsFilter(['password']);
-
 
 const initAdminUser = (app, next) => {
   const { adminEmail, adminPassword } = app.get('config');
@@ -28,14 +21,9 @@ const initAdminUser = (app, next) => {
   };
 
   User.findOne({ email: adminEmail })
-    .then(user => (
-      (!user)
-        ? User.create(adminUser, next)
-        : user.save(adminUser, next)
-    ))
+    .then(user => (!user ? User.create(adminUser, next) : user.save(adminUser, next)))
     .catch(next);
 };
-
 
 /*
  * Diagrama de flujo de una aplicación y petición en node - express :
@@ -63,7 +51,6 @@ const initAdminUser = (app, next) => {
  * (response).
  */
 
-
 module.exports = (app, next) => {
   /*
    * Cuando la ruta llamada tenga entre sus parámetros uid, ejecutará la función
@@ -87,7 +74,7 @@ module.exports = (app, next) => {
     }
 
     return User.findByIdOrEmail(uid)
-      .then((doc) => {
+      .then(doc => {
         if (!doc) {
           return next(404);
         }
@@ -96,7 +83,6 @@ module.exports = (app, next) => {
       })
       .catch(next);
   });
-
 
   app.get('/users', requireAdmin, (req, resp) => {
     User.paginate({}, getPaginationParamsFromRequest(req), (err, results) => {
@@ -111,11 +97,7 @@ module.exports = (app, next) => {
     });
   });
 
-
-  app.get('/users/:uid', requireAuth, (req, resp) => resp.json(
-    omitPrivateProps(req.user),
-  ));
-
+  app.get('/users/:uid', requireAuth, (req, resp) => resp.json(omitPrivateProps(req.user)));
 
   app.post('/users', (req, resp, next) => {
     const { email, password } = req.body;
@@ -126,13 +108,8 @@ module.exports = (app, next) => {
 
     User.create({ email, password })
       .then(doc => resp.json(omitPrivateProps(doc)))
-      .catch(err => (
-        (/duplicate key/.test(err.message))
-          ? next(403)
-          : next(500)
-      ));
+      .catch(err => (/duplicate key/.test(err.message) ? next(403) : next(500)));
   });
-
 
   app.put('/users/:uid', requireAuth, (req, resp, next) => {
     if (!Object.keys(req.body || {}).length) {
@@ -145,18 +122,18 @@ module.exports = (app, next) => {
 
     Object.assign(req.user, req.body);
 
-    req.user.save()
+    req.user
+      .save()
       .then(doc => resp.json(omitPrivateProps(doc)))
       .catch(next);
   });
-
 
   app.delete('/users/:uid', requireAuth, (req, resp, next) => {
-    req.user.remove()
+    req.user
+      .remove()
       .then(doc => resp.json(omitPrivateProps(doc)))
       .catch(next);
   });
-
 
   initAdminUser(app, next);
 };

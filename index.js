@@ -7,6 +7,7 @@ const routes = require('./routes');
 const pkg = require('./package.json');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
 // const Product = require('./models/Product')
 
 const { port, mongoUrl, secret } = config;
