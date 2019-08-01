@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [{
+    "src": "index.js",
+    "use": "@now/node-server"
+  }],
+  "routes": [{
+      "src": "/products/breakfast",
+      "methods": ["POST", "GET"],
+      "dest": "/index.js"
+    },
+    {
+      "src": "/products/lunch",
+      "methods": ["POST", "GET"],
+      "dest": "/index.js"
+    },
+    {
+      "src": "/orders",
+      "methods": ["POST", "GET"],
+      "dest": "/index.js"
+    }
+  ]
+}
