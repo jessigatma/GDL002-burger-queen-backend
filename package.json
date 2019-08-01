@@ -12,6 +12,7 @@
     "start": "node index.js",
     "e2e": "jest --verbose --testPathPattern e2e --globalSetup ./e2e/globalSetup --globalTeardown ./e2e/globalTeardown --runInBand",
     "deploy": "now -e MONGO_URL=@mongo-url -e JWT_SECRET=@jwt-secret -e ADMIN_EMAIL=@admin-email -e ADMIN_PASSWORD=@admin-password"
+    // "build": " gdl002-burger-queen-backend build --output public"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
