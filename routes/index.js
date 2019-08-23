@@ -5,6 +5,8 @@ const productsbr = require('./productsbr');
 const productslu = require('./productslu');
 const orders = require('./orders');
 
+require('events').EventEmitter.prototype._maxListeners = 25;
+
 const root = (app, next) => {
   const pkg = app.get('pkg');
   app.get('/', (req, res) =>
@@ -44,5 +46,3 @@ module.exports = (app, next) =>
     ],
     next,
   );
-
-require('events').EventEmitter.prototype._maxListeners = 25;
