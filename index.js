@@ -41,5 +41,3 @@ routes(app, err => {
 
   app.listen(port, () => console.log(`App listening on port ${port}`));
 });
-
-require('events').EventEmitter.prototype._maxListeners = 25;
