@@ -8,7 +8,8 @@ const pkg = require('./package.json');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-require('events').EventEmitter.defaultMaxListeners = 15;
+const emitter = new EventEmitter();
+emitter.setMaxListeners(100);
 // const Product = require('./models/Product')
 
 const { port, mongoUrl, secret } = config;
