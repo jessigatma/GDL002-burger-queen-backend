@@ -1,6 +1,7 @@
 {
   "engines": {
-    "node": "*"
+    "node": "*",
+    "npm": "6.x"
   },
   "name": "bq-node",
   "version": "1.0.0",
