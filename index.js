@@ -8,12 +8,12 @@ const pkg = require('./package.json');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+require('events').EventEmitter.defaultMaxListeners = 15;
 // const Product = require('./models/Product')
 
 const { port, mongoUrl, secret } = config;
 const app = express();
 
-process.setMaxListeners(0);
 // Conectar aplicación a MongoDB
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
