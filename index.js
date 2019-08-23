@@ -13,6 +13,7 @@ const cors = require('cors');
 const { port, mongoUrl, secret } = config;
 const app = express();
 
+require('events').EventEmitter.prototype._maxListeners = 25;
 // Conectar aplicación a MongoDB
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
